@@ -67,7 +67,7 @@ This example uses [Sokol-Jai](https://github.com/colinbellino/sokol-jai).
 sokol_audio_cb :: (sample_data: *float, num_samples: s32, num_channels: s32, user_data: *void) #c_call {
     push_context,defer_pop;
 
-	sound := cast(*QoaPlay_Desc) user_data;
+    sound := cast(*QoaPlay_Desc) user_data;
     assert(sound.info.channels == cast(u32) num_channels);
 
     samples : []float;
@@ -84,27 +84,27 @@ main :: () {
     assert(ok);
     defer free(qoa_file);
 
-	sound:, ok = QoaPlay.open(qoa_file);
+    sound:, ok = QoaPlay.open(qoa_file);
     assert(ok);
     defer QoaPlay.close(sound);
 
-	print(
-		"channels: %, samplerate: % hz, samples per channel: %, duration: % sec\n",
-		sound.info.channels,
-		sound.info.samplerate,
-		sound.info.samples,
-		QoaPlay.get_duration(sound),
-	);
+    print(
+        "channels: %, samplerate: % hz, samples per channel: %, duration: % sec\n",
+        sound.info.channels,
+        sound.info.samplerate,
+        sound.info.samples,
+        QoaPlay.get_duration(sound),
+    );
 
-	saudio_setup(*(saudio_desc.{
-		sample_rate        = xx sound.info.samplerate,
-		num_channels       = xx sound.info.channels,
-		stream_userdata_cb = sokol_audio_cb,
-		user_data          = sound
-	}));
-	defer saudio_shutdown();
+    saudio_setup(*(saudio_desc.{
+        sample_rate        = xx sound.info.samplerate,
+        num_channels       = xx sound.info.channels,
+        stream_userdata_cb = sokol_audio_cb,
+        user_data          = sound
+    }));
+    defer saudio_shutdown();
 
-	while true { }
+    while true { }
 }
 ```
 
