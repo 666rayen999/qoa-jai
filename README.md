@@ -1,4 +1,4 @@
-# QOI Implementation in Jai
+# QOA Implementation in Jai
 
 This repository contains an implementation of the [QOA (Quite OK Audio)](https://github.com/phoboslab/qoa/) format in the [Jai programming language](https://en.wikipedia.org/?title=JAI_(programming_language)).
 
